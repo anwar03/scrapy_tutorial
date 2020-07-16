@@ -15,9 +15,10 @@ NEWSPIDER_MODULE = 'spiderman.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'spiderman (+http://www.yourdomain.com)'
-
+USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+PROXY_POOL_ENABLED = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -54,6 +55,14 @@ ROBOTSTXT_OBEY = True
 #    'spiderman.middlewares.SpidermanDownloaderMiddleware': 543,
 #}
 
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+    'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
+    'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
+}
+
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -62,9 +71,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'spiderman.pipelines.SpidermanPipeline': 300,
-#}
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

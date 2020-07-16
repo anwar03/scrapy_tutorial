@@ -7,6 +7,13 @@ import scrapy
 
 
 class SpidermanItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    author = scrapy.Field()
+    tag = scrapy.Field()
+
+
+class AmazonSpidermanItem(scrapy.Item):
+    book_name = scrapy.Field()
+    book_author = scrapy.Field()
+    book_price = scrapy.Field()
+    book_image_url = scrapy.Field()
